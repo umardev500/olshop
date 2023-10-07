@@ -10,7 +10,7 @@ import (
 // loadAuthRoutes load auth routes
 func (r *router) loadAuthRoutes(router fiber.Router) {
 	userUC := deps.UserInject(r.db)
-	handler := auth.NewAuthController(userUC)
+	handler := auth.NewAuthController(userUC, r.validate)
 	router.Post("/login", handler.Login)
 	router.Get("/logout", handler.Logout)
 	router.Post("/register", handler.Register)

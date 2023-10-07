@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
 )
@@ -22,8 +23,9 @@ func (a *application) Start(ctx context.Context) error {
 	app := fiber.New(fiber.Config{
 		DisableStartupMessage: true,
 	})
+	validate := validator.New()
 	db := config.NewMongo().Database("olshop")
-	router := routes.NewRouter(app, db)
+	router := routes.NewRouter(app, db, validate)
 	router.LoadRoutes()
 
 	ch := make(chan error, 1)
