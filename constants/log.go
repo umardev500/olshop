@@ -1,5 +1,7 @@
 package constants
 
 var (
-	RegisterOK = "Register successully"
+	LoginOK       = "Login successully"
+	RegisterOK    = "Register successully"
+	ValidationErr = "Validation error"
 )
