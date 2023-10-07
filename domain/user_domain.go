@@ -12,6 +12,7 @@ type UserController interface{}
 
 type UserUsecase interface {
 	FindByUsername(ctx context.Context, user string) (*model.UserModel, error)
+	CreateUser(ctx context.Context, req model.UserCreateRequest) error
 }
 
 type UserRepo interface {
