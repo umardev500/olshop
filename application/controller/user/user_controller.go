@@ -2,10 +2,18 @@ package user
 
 import (
 	"olshop/domain"
+
+	"github.com/go-playground/validator/v10"
 )
 
-type userController struct{}
+type userController struct {
+	usecase  domain.UserUsecase
+	validate *validator.Validate
+}
 
-func NewUserController() domain.UserController {
-	return &userController{}
+func NewUserController(usecase domain.UserUsecase, validate *validator.Validate) domain.UserController {
+	return &userController{
+		usecase:  usecase,
+		validate: validate,
+	}
 }

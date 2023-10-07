@@ -22,7 +22,13 @@ type UserModel struct {
 
 // UserCreateRequest is a body to create new user
 type UserCreateRequest struct {
-	Username string `json:"username" validate:"require,min=6"`
-	Password string `json:"password" validate:"require,min=8"`
-	Email    string `json:"email" validate:"require,min=6"`
+	Username string `json:"username" validate:"required,min=6"`
+	Password string `json:"password" validate:"required,min=8"`
+	Email    string `json:"email" validate:"required,min=6"`
+}
+
+// UserUpdatePassRequest is a body to update password
+type UserUpdatePassRequest struct {
+	Password    string `json:"password" validate:"required,min=8"`
+	NewPassword string `json:"new_password" validate:"required,min=8"`
 }
