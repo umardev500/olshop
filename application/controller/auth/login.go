@@ -3,6 +3,7 @@ package auth
 import (
 	"context"
 	"olshop/application/controller"
+	"olshop/constants"
 	"olshop/domain/model"
 	"olshop/helper"
 	"time"
@@ -20,7 +21,7 @@ func (a *authController) Login(c *fiber.Ctx) error {
 	// validate
 	detail, err := helper.ValidateStruct(a.validate, creds)
 	if err != nil {
-		return controller.FiberErr(c, fiber.StatusUnprocessableEntity, "validation error", detail)
+		return controller.FiberErr(c, fiber.StatusUnprocessableEntity, constants.ValidationErr, detail)
 	}
 
 	ctx, cancel := context.WithTimeout(c.Context(), 5*time.Second)

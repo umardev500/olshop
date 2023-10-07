@@ -8,16 +8,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func (u *userUsecase) CreateUser(ctx context.Context, req model.UserCreateRequest) error {
-	var user model.UserModel = model.UserModel{
-		Username: req.Username,
-		Password: req.Password,
-		Detail: model.UserDetailModel{
-			Email: req.Email,
-		},
-		CreatedAt: helper.GetUnixTime(),
-	}
-
+func (u *userUsecase) CreateUser(ctx context.Context, user model.UserModel) error {
+	user.CreatedAt = helper.GetUnixTime()
 	var payload *bson.D = new(bson.D)
 	helper.ToBsonD(user, payload, false)
 	err := u.repo.Create(ctx, *payload)
