@@ -3,6 +3,7 @@ package application
 import (
 	"context"
 	"fmt"
+	"olshop/config"
 	"olshop/routes"
 	"os"
 	"time"
@@ -21,7 +22,8 @@ func (a *application) Start(ctx context.Context) error {
 	app := fiber.New(fiber.Config{
 		DisableStartupMessage: true,
 	})
-	router := routes.NewRouter(app)
+	db := config.NewMongo().Database("olshop")
+	router := routes.NewRouter(app, db)
 	router.LoadRoutes()
 
 	ch := make(chan error, 1)

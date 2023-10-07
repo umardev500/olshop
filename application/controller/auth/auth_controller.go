@@ -4,9 +4,13 @@ import (
 	"olshop/domain"
 )
 
-type authController struct{}
+type authController struct {
+	userUC domain.UserUsecase
+}
 
 // NewAuthController create new auth controller instance
-func NewAuthController() domain.AuthController {
-	return &authController{}
+func NewAuthController(userUC domain.UserUsecase) domain.AuthController {
+	return &authController{
+		userUC: userUC,
+	}
 }
