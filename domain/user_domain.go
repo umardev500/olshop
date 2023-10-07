@@ -11,12 +11,14 @@ import (
 
 type UserController interface {
 	UpdatePassword(*fiber.Ctx) error
+	UpdateDetail(*fiber.Ctx) error
 }
 
 type UserUsecase interface {
 	FindByUsername(ctx context.Context, user string) (*model.UserModel, error)
 	CreateUser(ctx context.Context, user model.UserModel) error
 	UpdateUserPassword(ctx context.Context, id string, user model.UserModel) error
+	UpdateUserDetail(ctx context.Context, id string, user model.UserModel) error
 }
 
 type UserRepo interface {

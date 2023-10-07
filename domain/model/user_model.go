@@ -32,3 +32,10 @@ type UserUpdatePassRequest struct {
 	Password    string `json:"password" validate:"required,min=8"`
 	NewPassword string `json:"new_password" validate:"required,min=8"`
 }
+
+type UserUpdateDetailRequest struct {
+	Name    string `json:"name" validate:"required,min=3"`
+	Address string `json:"address" validate:"required,min=15"`
+	Email   string `json:"email" validate:"required,min=6"`
+	Phone   string `json:"phone" validate:"required,min=11"`
+}
