@@ -3,6 +3,7 @@ package application
 import (
 	"context"
 	"fmt"
+	"olshop/routes"
 	"os"
 	"time"
 
@@ -20,6 +21,9 @@ func (a *application) Start(ctx context.Context) error {
 	app := fiber.New(fiber.Config{
 		DisableStartupMessage: true,
 	})
+	router := routes.NewRouter(app)
+	router.LoadRoutes()
+
 	ch := make(chan error, 1)
 	go func() {
 		port := os.Getenv("PORT")
