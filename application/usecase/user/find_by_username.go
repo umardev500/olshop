@@ -3,8 +3,11 @@ package user
 import (
 	"context"
 	"olshop/domain/model"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func (u *userUsecase) FindByUsername(ctx context.Context, user string) (*model.UserModel, error) {
-	return u.repo.FindByUser(ctx, user)
+	filter := bson.D{{Key: "username", Value: user}}
+	return u.repo.FindByUser(ctx, filter)
 }
